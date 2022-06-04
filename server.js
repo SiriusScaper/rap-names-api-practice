@@ -1,22 +1,26 @@
-const express = require('express');
+const express = require('express')
 const app = express()
-const PORT = 8000;
+const cors = require('cors')
+const PORT = 8000
+
+
+app.use(cors())
 
 const rappers = {
-  "21 Savage": {
-  "age": 29,
-  "birthName": 'Shéyaa Bin Abraham-Joseph',
-  "birthLocation": 'London, England'
+  '21 savage': {
+    'age': 29,
+    'birthName': 'Shéyaa Bin Abraham-Joseph',
+    'birthLocation': 'London, England'
   },
-  "Chance the Rapper": {
-    "age": 29,
-    "birthName": 'Chancelor Bennett',
-    "birthLocation": 'Chicago, Illinois'
+  'chance the rapper': {
+      'age': 29,
+      'birthName': 'Chancelor Bennett',
+      'birthLocation': 'Chicago, Illinois'
   },
-  "unkonwn": {
-    "age": 0,
-    "birthName": 'unknown',
-    "birthLocation": 'unknown'
+  'unknown': {
+      'age': 0,
+      'birthName': 'unknown',
+      'birthLocation': 'unknown'
   }
 }
 
@@ -25,13 +29,13 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/:name', (req, res) => {
-  const rapperName = req.params.name.toLowerCase();
+  const rapperName = req.params.name.toLowerCase()
   if(rappers[rapperName]){
-    res.json(rappers[rapperName])
-  }else {
-    res.json(rappers['unknown'])
+      res.json(rappers[rapperName])
+  }else{
+      res.json(rappers['unknown'])
   }
-});
+})
 
 app.listen(process.env.PORT || PORT, () => {
   console.log(`Sever is running on port ${PORT}`)
